@@ -68,6 +68,9 @@ bundle exec guard
 
 Open an issue to request enhancements. 
 
+## References
+* [Wrapping Your API In A Custom Ruby Gem](https://blog.engineyard.com/2014/wrapping-your-api-in-a-ruby-gem) - Thoughtworks
+
 ## License
 
 MIT. Use and abuse. No comeback.
