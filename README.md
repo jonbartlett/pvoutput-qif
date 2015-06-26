@@ -4,15 +4,22 @@
 
 # PVOutput_QIF 
 
-[PVOutput](http://pvoutput.org) aggregates and stores data on solar photovoltaic output and energy consumption. 
+[PVOutput](http://pvoutput.org) aggregates and stores data on solar photovoltaic output and energy consumption. Feed in and consumption tariffs can be entered in PV Output so that it calculates charges or credits from your electricity provider inclusive of standing charges. As electricity providers billing cycle is often quarterly, it is useful to know at any point in time what your upcoming bill will contain. If you use accounting software this credit or debit amount can be entered as an asset or a liability. All this would require a lot of manual effort however.
+
+This program will generate a QIF file for importing into your favourite accounting package (I use [GNUCash](http://www.gnucash.org/) based on your electricity charges from PVOutput via their API.
 
 ## PVOutput Configuration
 
+
 ### Grid Consumption Charges 
+
+Enter KW/h charges 
 
 ### Feed in Tariff
 
 ### Enable PVOutput API
+
+Configure API Key
 
 ## Usage
 
@@ -68,8 +75,6 @@ bundle exec guard
 
 Open an issue to request enhancements. 
 
-## References
-* [Wrapping Your API In A Custom Ruby Gem](https://blog.engineyard.com/2014/wrapping-your-api-in-a-ruby-gem) - Thoughtworks
 
 ## License
 
