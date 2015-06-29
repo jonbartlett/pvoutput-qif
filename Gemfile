@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rest-client'
-gem 'qif'
 
 group :development do
   gem 'guard' # NOTE: this is necessary in newer versions
