@@ -2,11 +2,15 @@
 [![Code Climate](https://codeclimate.com/github/jonbartlett/pvoutput_qif/badges/gpa.svg)](https://codeclimate.com/github/jonbartlett/pvoutput_qif)
 [![Test Coverage](https://codeclimate.com/github/jonbartlett/pvoutput_qif/badges/coverage.svg)](https://codeclimate.com/github/jonbartlett/pvoutput_qif/coverage)
 
-# PVOutput_QIF 
+# PVOutputQIF 
 
-[PVOutput](http://pvoutput.org) aggregates and stores data on solar photovoltaic output and energy consumption. Feed in and consumption tariffs can be entered in PV Output so that it calculates charges or credits from your electricity provider inclusive of standing charges. As electricity providers billing cycle is often quarterly, it is useful to know at any point in time what your upcoming bill will contain. If you use accounting software this credit or debit amount can be entered as an asset or a liability. All this would require a lot of manual effort however.
+Financially account for your energy consumption and/or production.
 
-This program will generate a QIF file for importing into your favourite accounting package (I use [GNUCash](http://www.gnucash.org/) based on your electricity charges from PVOutput via their API.
+[PVOutput](http://pvoutput.org) aggregates and stores data on solar photovoltaic output and energy consumption. Feed in and consumption tariffs can be entered in PV Output so that it calculates charges or credits from your electricity provider inclusive of standing charges. As electricity providers billing cycle is often quarterly, it is useful to know at any point in time what your upcoming bill will contain. If you use accounting software this credit or debit amount can be entered as an asset or a liability.
+
+This program will generate a QIF file for importing into your favourite accounting package  based on your electricity charges from PVOutput via their API. Developed and tested with [GNUCash](http://www.gnucash.org/).
+
+It also provides a basic Ruby wrapper around the PVOutput API.
 
 ## PVOutput Configuration
 
@@ -23,32 +27,29 @@ Configure API Key
 
 ## Usage
 
-Retrieve 
-
 ```bash
-ruby pvoutput_qif.rb  
+Usage: pvoutput_qif.rb [options]
+
+Options:
+  --help                        Show this screen.
+  --pvosysid SYSID              PVOutput system ID 
+  --apikey APIKEY               PVOutput API authentication string
+  --datefrom DATEFROM           date from <dd/mm/yyyy> 
+  --dateto DATETO               date to <dd/mm/yyyy>
+  --assetacct ASSETACCT         QIF asset account name
+  --liabilityacct LIABILITYACCT QIF liability account name
+  --expenseacct EXPENSEACCT QIF expense account name
+  --outputfile QIFFILEPATH      Path to generated QIF file [default: pvo<datefrom><dateto>.qif]
 ```
 
-The following options are available:
+For example:
 
-```bash
-	-s  --systemid        PVOutput system ID 
- -a  --authid          PVOutput API authentication string
- -df --datefrom        date from <dd/mm/yyyy>
- -dt --dateto          date to <dd/mm/yyyy>
- -af --qifaccountfrom  QIF account from
- -at --qifaccountto    QIF account to
+```
+pvoutput_qif.rb [options]
 ```
 
-The QIF file will be created as follows:
+## Config File
 
-```bash
-pvoutput<systemid>_<datefrom>_<dateto>.qif
-```
-
-## Limitations
-
-Running for the current day will result in partial data. 
 
 ## Unit Tests
 
@@ -79,6 +80,4 @@ Open an issue to request enhancements.
 ## License
 
 MIT. Use and abuse. No comeback.
-
-
 
