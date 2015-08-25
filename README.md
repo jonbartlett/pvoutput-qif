@@ -71,11 +71,13 @@ bundle exec guard
 
 * Finalise coding
 * Tests
+* Release as Gem?
 
 ## Further Development
 
 Open an issue to request enhancements. 
 
+Pull requests welcome.
 
 ## License
 

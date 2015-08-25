@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rest-client'
+gem 'docopt'
 
 group :development do
   gem 'guard' # NOTE: this is necessary in newer versions

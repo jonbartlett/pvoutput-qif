@@ -1,19 +1,38 @@
 require 'pry'
-require 'qif'
-require './lib/pvoutput/pvauth'
-require './lib/pvoutput/statistic'
+require './lib/pvoutput'
+require './lib/qif'
 
-pvo_auth = PVOutput::PVAuth.new('8313', 'dc31fc56cff51f')
+opts = PVOutput::Options.parse(ARGV)
 
-stat_data = PVOutput::Statistic.fetch("20150625", "20150625", pvo_auth)
+pvo_auth = PVOutput::PVAuth.new(opts['sysid'], opts['apikey'])
 
+binding.pry
 
-Qif::Writer.open("test.qif", type = 'Cash', format = 'dd/mm/yyyy') do |qif|
+# calculate date range
+#   if no date params then use last access date from config file
+#     if first time run, collect 90 days of data
+#   if date from valid but no date to, assume date to is yesterday
+if opt['datefrom'].nil? || opt['dateto'].nil?
   
-  qif << Qif::Transaction.new(
-    :date => stat_data.actual_date_from,
-    :amount => stat_data.debit_amount.to_f,
-    :memo => 'Test trx')
+end
+
+# fetch data from PVO
+pvstat_data = PVOutput::Statistic.fetch("20150625", "20150625", pvo_auth)
+
+
+Qif::Writer.open("data/elect_data.qif", type = 'Cash', format = 'dd/mm/yyyy') do |qif|
+ 
+  # all subsequent transactions are for this Account 
+#  qif << Qif::Account.new(
+#    :name => opts['expense']
+#  )
+  
+  # loop by day
+#  qif << Qif::Transaction.new(
+#    :date => pvstat_data.actual_date_from,
+#    :memo => 'n kw/h',
+#    :split_category => opts['expense'],
+#    :split_amount => pvstat_data.debit_amount.to_f)
 
 end
 
