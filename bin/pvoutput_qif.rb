@@ -38,7 +38,9 @@ end
 # fetch data from PVO
 pvstat_data = PVOutput::Statistic.fetch(opts['datefrom'], opts['dateto'], pvo_auth)
 
-Qif::Writer.open("#{opts['filedir']}/pvo#{opts['datefrom']}#{opts['dateto']}.qif", type = 'Cash', format = 'dd/mm/yyyy') do |qif|
+filename = "#{opts['filedir']}/pvo#{opts['datefrom']}#{opts['dateto']}.qif"
+
+Qif::Writer.open(filename, type = 'Cash', format = 'dd/mm/yyyy') do |qif|
  
   # if liability amount (debit) 
   if pvstat_data.debit_amount.to_f != 0
@@ -77,3 +79,4 @@ end
 # update last run date in config file
 PVOutput::Options.write_lastrundate (Date.today.strftime("%Y%m%d"))
 
+UI::Progress.msg (" QIF file exported: #{filename}")
