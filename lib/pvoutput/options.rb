@@ -41,6 +41,15 @@ module PVOutput
       config = YAML::load_file(path)  
     end
 
+    # write last run date to config file
+    def self.write_lastrundate (date_string)
+      config = YAML::load_file(CONFIG_FILE_PATH)  
+      config['lastrundate'] = date_string
+      File.open(CONFIG_FILE_PATH, 'w') do |f|
+        f.write config.to_yaml
+      end
+    end
+
     # validate command line args
     def self.validate (parsed_args)
      
@@ -63,7 +72,6 @@ module PVOutput
         exit
       end
 
-      
       # validate date format
       begin
         Date.parse(parsed_args['dateto']) unless parsed_args['dateto'].nil?
