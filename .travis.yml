@@ -14,3 +14,8 @@ branches:
 
 env:
   global:
+
+
+addons:
+  code_climate:
+    repo_token: 9b5f2b8c8eb1bb3d1f8cdc5c27964617787e896cd0a07ceb1a047518d731e7e8
