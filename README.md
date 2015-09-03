@@ -1,59 +1,42 @@
 [![Build Status](https://travis-ci.org/jonbartlett/pvoutput_qif.svg?branch=master)](https://travis-ci.org/jonbartlett/pvoutput_qif)
-[![Code Climate](https://codeclimate.com/github/jonbartlett/pvoutput_qif/badges/gpa.svg)](https://codeclimate.com/github/jonbartlett/pvoutput_qif)
-[![Test Coverage](https://codeclimate.com/github/jonbartlett/pvoutput_qif/badges/coverage.svg)](https://codeclimate.com/github/jonbartlett/pvoutput_qif/coverage)
+[![Code Climate](https://codeclimate.com/github/jonbartlett/pvoutput-qif/badges/gpa.svg)](https://codeclimate.com/github/jonbartlett/pvoutput-qif)
+[![Test Coverage](https://codeclimate.com/github/jonbartlett/pvoutput-qif/badges/coverage.svg)](https://codeclimate.com/github/jonbartlett/pvoutput-qif/coverage)
 
-# PVOutputQIF 
-
-Financially account for your energy consumption and/or production.
+Financially account for your energy consumption and/or production between billing cycles.
 
 [PVOutput](http://pvoutput.org) aggregates and stores data on solar photovoltaic output and energy consumption. Feed in and consumption tariffs can be entered in PV Output so that it calculates charges or credits from your electricity provider inclusive of standing charges. As electricity providers billing cycle is often quarterly, it is useful to know at any point in time what your upcoming bill will contain. If you use accounting software this credit or debit amount can be entered as an asset or a liability.
 
-This program will generate a QIF file for importing into your favourite accounting package  based on your electricity charges from PVOutput via their API. Developed and tested with [GNUCash](http://www.gnucash.org/).
+This application generates a QIF file based on your electricity charges from PVOutput via their API which can be imported into your favourite accounting package. Developed and tested with [GNUCash](http://www.gnucash.org/).
 
-It also provides a basic Ruby wrapper around the PVOutput API.
+Also provided is a basic Ruby wrapper around the PVOutput API.
 
-## PVOutput Configuration
-
-
-### Grid Consumption Charges 
-
-Enter KW/h charges 
-
-### Feed in Tariff
-
-### Enable PVOutput API
-
-Configure API Key
+For more information see my blog post on the subject [here](http://www.jonbartlett.org/notes/electricity-consumption-generation-accounting/).
 
 ## Usage
 
+Edit config file ```pvoutput_qif.yml``` or pass configuration at the command line. Command line options override options in the config file.
+
 ```bash
-Usage: pvoutput_qif.rb [options]
+      pvoutput_qif.rb
 
-Options:
-  --help                        Show this screen.
-  --pvosysid SYSID              PVOutput system ID 
-  --apikey APIKEY               PVOutput API authentication string
-  --datefrom DATEFROM           date from <dd/mm/yyyy> 
-  --dateto DATETO               date to <dd/mm/yyyy>
-  --assetacct ASSETACCT         QIF asset account name
-  --liabilityacct LIABILITYACCT QIF liability account name
-  --expenseacct EXPENSEACCT QIF expense account name
-  --outputfile QIFFILEPATH      Path to generated QIF file [default: pvo<datefrom><dateto>.qif]
+      Usage: pvoutput_qif.rb [--sysid=SYSID] [--apikey=APIKEY] [--datefrom=DATEFROM] [--dateto=DATETO] [--assetacct=ASSETACCT] [--liabilityacct=LIABILITYACCT] [--expenseacct=EXPENSEACCT] [--outputfile=QIFFILEPATH] [--configfilepath=CONFIGFILEPATH]
+
+      Options:
+        --help                             Show this screen.
+        [--sysid=SYSID]                    PVOutput system ID.
+        [--apikey=APIKEY]                  PVOutput API authentication key.
+        [--datefrom=DATEFROM]              date from <ddmmyyyy>.
+        [--dateto=DATETO]                  date to <ddmmyyyy>.
+        [--assetacct=ASSETACCT]            QIF asset account name.
+        [--liabilityacct=LIABILITYACCT]    QIF liability account name.
+        [--expenseacct=EXPENSEACCT]        QIF expense account name.
+        [--outputfile=QIFFILEPATH]         Path to generate QIF file.
+        [--configfilepath=CONFIGFILEPATH]  Path to optional config file [default: pvoutput_qif.yml]
 ```
-
-For example:
-
-```
-pvoutput_qif.rb [options]
-```
-
-## Config File
-
 
 ## Unit Tests
 
-MiniTest unit tests can be found in the ```test``` directory.
+Some MiniTest unit tests can be found in the ```test``` directory.
 
 Tests can be run using:
 
@@ -67,13 +50,22 @@ or with [Guard](https://github.com/guard/guard):
 bundle exec guard
 ```
 
+## Debugging
+
+If you run into issues calling the PVOutput API, enable (Rest Cleint)[https://github.com/rest-client/rest-client] logging run as follows:
+
+```RESTCLIENT_LOG=stdout pvoutput_qif.rb```
+
+this will show the exact http call made to the API.
+
 ## To Do
 
-* Finalise coding
-* Tests
-* Release as Gem?
+* test coverage
+* package into a gem
+* utilise qif gem rather than source
+* refactor
 
-## Further Development
+## Future Development
 
 Open an issue to request enhancements. 
 
