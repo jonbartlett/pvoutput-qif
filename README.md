@@ -52,7 +52,7 @@ bundle exec guard
 
 ## Debugging
 
-If you run into issues calling the PVOutput API, enable (Rest Cleint)[https://github.com/rest-client/rest-client] logging run as follows:
+If you run into issues calling the PVOutput API, enable [Rest Client](https://github.com/rest-client/rest-client) logging run as follows:
 
 ```RESTCLIENT_LOG=stdout pvoutput_qif.rb```
 
