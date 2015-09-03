@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/jonbartlett/pvoutput_qif.svg?branch=master)](https://travis-ci.org/jonbartlett/pvoutput_qif)
+[![Build Status](https://travis-ci.org/jonbartlett/pvoutput-qif.svg?branch=master)](https://travis-ci.org/jonbartlett/pvoutput-qif)
 [![Code Climate](https://codeclimate.com/github/jonbartlett/pvoutput-qif/badges/gpa.svg)](https://codeclimate.com/github/jonbartlett/pvoutput-qif)
 [![Test Coverage](https://codeclimate.com/github/jonbartlett/pvoutput-qif/badges/coverage.svg)](https://codeclimate.com/github/jonbartlett/pvoutput-qif/coverage)
 
