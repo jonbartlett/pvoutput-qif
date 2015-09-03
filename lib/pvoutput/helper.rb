@@ -27,7 +27,7 @@ module PVOutput
     end
 
     def self.memo_text (opts, energy_amt)
-      "#{format_date(opts['datefrom'])} to #{format_date(opts['dateto'])} (#{days_diff(opts['datefrom'],opts['dateto'])} days) "\
+     "#{format_date(opts['datefrom'])} to #{format_date(opts['dateto'])} (#{days_diff(opts['datefrom'],opts['dateto']).to_i} days) "\
       "= #{watts_to_kw(energy_amt)} kWh (#{watts_to_kw(kw_per_day(energy_amt, days_diff(opts['datefrom'],opts['dateto'])))} kWh/day)"
     end
 

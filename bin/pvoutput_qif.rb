@@ -1,11 +1,9 @@
 require 'pry'
 require './lib/pvoutput'
 require './lib/qif'
-require './lib/ui'
 require 'date'
 
 UI::Banner.print
-
 
 opts = PVOutput::Options.parse(ARGV)
 
@@ -47,13 +45,12 @@ Qif::Writer.open(filename, type = 'Cash', format = 'dd/mm/yyyy') do |qif|
 
     # all subsequent transactions are for this Account 
     qif << Qif::Account.new(
-      :name => opts['liability']
+      :name => opts['expense']
     )
-    
     # create debit / liability transaction
     qif << Qif::Transaction.new(
       :date => pvstat_data.actual_date_to,
-      :memo => "Electricity consumed #{Date.parse(opts['datefrom']).strftime('%d/%m/%Y')} to #{Date.parse(opts['dateto']).strftime('%d/%m/%Y')} = #{pvstat_data.energy_consumed} Watts",
+      :memo => "Electricity consumed #{PVOutput::Helper.memo_text(opts, pvstat_data.energy_consumed)}",
       :split_category => opts['liability'],
       :split_amount => pvstat_data.debit_amount.to_f) 
   end 
@@ -63,7 +60,7 @@ Qif::Writer.open(filename, type = 'Cash', format = 'dd/mm/yyyy') do |qif|
 
     # all subsequent transactions are for this Account 
     qif << Qif::Account.new(
-      :name => opts['asset']
+      :name => opts['income']
     )
 
     qif << Qif::Transaction.new(
