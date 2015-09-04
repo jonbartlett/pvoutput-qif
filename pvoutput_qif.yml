@@ -1,0 +1,9 @@
+---
+lastrundate:
+sysid: 
+apikey: 
+income: Income:Other Income:Electricity Generation
+asset: Assets:Current Assets:Money owed to you:Electricity Generation
+liability: Liabilities:Utilities:Electricity
+expense: Expenses:Utilities:Electricity
+filedir: data
